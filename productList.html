@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="productList.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bungee Inline">
+  </head>
+  <title>The Soup Store</title>
+  <body>
+  <div class="container">
+    <div class="header">
+        <h1>The Soup Store</h1>
+    </div>
+
+    <div class="sidebar"> <!--Sidebar -->
+
+      <section> <!--Categories-->
+        <div class="text-muted small text-uppercase mb-5">
+          <h5 class="font-weight-bold mb-3">Categories</h5>
+          <p class="mb-3"><a href="#!" class="card-link-secondary">Spicy Soups</a></p>
+          <p class="mb-3"><a href="#!" class="card-link-secondary">Creamy Soups</a></p>
+          <p class="mb-3"><a href="#!" class="card-link-secondary">Chunky Soups</a></p>
+          <p class="mb-3"><a href="#!" class="card-link-secondary">Veggie Soups</a></p>
+          <p class="mb-3"><a href="#!" class="card-link-secondary">Other</a></p>
+        </div>
+      </section>
+
+      <section> <!--Order By-->
+        <h5 class="mb-4">Order By</h5>
+        <div class="form-check pl-0 mb-3">
+          <input type="checkbox" class="form-check-input filled-in" id="price-l">
+          <label class="form-check-label small text-uppercase card-link-secondary" for="price-l">Price (Low to High)</label>
+        </div>
+        <div class="form-check pl-0 mb-3">
+          <input type="checkbox" class="form-check-input filled-in" id="price-h">
+          <label class="form-check-label small text-uppercase card-link-secondary" for="price-h">Price (High to Low)</label>
+        </div>
+        <div class="form-check pl-0 mb-3">
+          <input type="checkbox" class="form-check-input filled-in" id="name">
+          <label class="form-check-label small text-uppercase card-link-secondary" for="name">Name</label>
+        </div>
+      </section>
+
+      <!-- Section: Price Ranges-->
+    <section class="mb-4">
+      <h5 class="font-weight-bold mb-3">Price</h5>
+      <div class="form-check pl-0 mb-3">
+        <input type="radio" class="form-check-input" id="under5" name="materialExampleRadios">
+        <label class="form-check-label small text-uppercase card-link-secondary" for="under5">Under $5</label>
+      </div>
+      <div class="form-check pl-0 mb-3">
+        <input type="radio" class="form-check-input" id="fiveto8" name="materialExampleRadios">
+        <label class="form-check-label small text-uppercase card-link-secondary" for="5to8">$5 to $8</label>
+      </div>
+      <div class="form-check pl-0 mb-3">
+        <input type="radio" class="form-check-input" id="eightplus" name="materialExampleRadios">
+        <label class="form-check-label small text-uppercase card-link-secondary" for="eightplus">$8 & Above</label>
+      </div>
+      </section>
+    </div>
+    <div id="products-list-container">
+
+    </div>
+</div>
+  </body>
+  <script type="text/javascript" src="./productList.js"></script>
+</html>
