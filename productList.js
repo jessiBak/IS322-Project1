@@ -40,7 +40,7 @@ renderList(products);
 
 function orderBy(sort_category)
 {
-  let results = (sort_category === 'title') ?
+  let results = (sort_category === 'name') ?
     products.sort(function(a, b)
     {
       let title1 = a.name.toUpperCase();
@@ -61,5 +61,13 @@ function orderBy(sort_category)
 
     renderList(results);
 }
+
+document.querySelectorAll('.form-check-input filled-in').addEventListener('change', function()
+  {
+    if(this.checked)
+    {
+      orderBy(event.target.id)
+    }
+  })
 
 })();
