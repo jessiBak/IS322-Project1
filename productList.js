@@ -55,7 +55,7 @@ renderList(products);
 //function to sort products based name or price (ascending/descending) based on selected category
 function orderBy(sort_category)
 {
-  console.log('button was clicked!')
+  //console.log('button was clicked!')
   let results = [];
   if(sort_category === 'name')
   {
@@ -88,7 +88,7 @@ function orderBy(sort_category)
       return b.price - a.price;
     });
 }
-    console.log('rendering newly sorted products list...')
+    //console.log('rendering newly sorted products list...')
     renderList(results);
 }
 
@@ -131,6 +131,28 @@ function filterProducts(category)
       return item.category === 'other';
     });
   }
+  else if(category === 'under5')
+  {
+    filtered = products.filter(function(item)
+    {
+      return item.price < 5;
+    });
+  }
+  else if(category === 'fiveto8')
+  {
+    filtered = products.filter(function(item)
+    {
+      return (item.price >= 5 && item.price < 8);
+    });
+
+  }
+  else if(category === 'eightplus')
+  {
+    filtered = products.filter(function(item)
+    {
+      return item.price >= 8;
+    });
+  }
   else //reset (display all products in original order)
   {
     filtered = products;
@@ -157,6 +179,21 @@ document.getElementById('chunky').onclick = function()
 document.getElementById('veggie').onclick = function()
 {
   filterProducts('veggie');
+}
+
+document.getElementById('under5').onclick = function()
+{
+  filterProducts('under5');
+}
+
+document.getElementById('fiveto8').onclick = function()
+{
+  filterProducts('fiveto8');
+}
+
+document.getElementById('eightplus').onclick = function()
+{
+  filterProducts('eightplus');
 }
 
 document.getElementById('other').onclick = function()
