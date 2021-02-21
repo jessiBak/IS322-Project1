@@ -1,5 +1,5 @@
 //Mock Database
-(function () {
+/*(function () {*/
 const products = [
 {"title": "Spicy Chicken Pasta Soup", "price": "8.99", "type": "soup", "img_src": "https://www.eatwell101.com/wp-content/uploads/2016/10/homemade-chicken-soup-recipe-1.jpg", "category": "spicy",},
 {"title": "T Shirt", "price": "5.99", "type": "clothes", "img_src": "https://res.cloudinary.com/teepublic/image/private/s--qYWqBEPI--/t_Resized%20Artwork/c_crop,x_10,y_10/c_fit,w_470/c_crop,g_north_west,h_626,w_470,x_0,y_0/g_north_west,u_upload:v1462829015:production:blanks:mtl53ofohwq5goqjo9ke,x_-395,y_-325/b_rgb:eeeeee/c_limit,f_auto,h_630,q_90,w_630/v1608115657/production/designs/17444308_0.jpg", "category": "other",},
@@ -40,11 +40,14 @@ renderList(products);
 
 function orderBy(sort_category)
 {
-  let results = (sort_category === 'title') ?
-    products.sort(function(a, b)
+  console.log('button was clicked!')
+  let results = [];
+  if(sort_category === 'name')
+  {
+    results = products.sort(function(a, b)
     {
-      let title1 = a.name.toUpperCase();
-      let title2 = b.name.toUpperCase();
+      let title1 = a.title.toUpperCase();
+      let title2 = b.title.toUpperCase();
       if(title1 < title2)
       {
         return -1;
@@ -53,13 +56,38 @@ function orderBy(sort_category)
       {
         return 1;
       }
-    }) :
-    products.sort(function(a, b)
+      return 0;
+    })
+  }
+  else if(sort_category === 'price-l')
+  {
+    results = products.sort(function(a, b)
     {
-      return a['price'] - b['price'];
+      return a.price - b.price;
     });
-
+  }
+  else//sort_category === price-h
+  {
+    results = products.sort(function(a, b)
+    {
+      return b.price - a.price;
+    });
+}
+    console.log('rendering newly sorted products list...')
     renderList(results);
 }
 
-})();
+document.getElementById('name').onclick = function()
+{
+  orderBy('name');
+}
+document.getElementById('price-l').onclick = function()
+{
+   orderBy('price-l');
+}
+document.getElementById('price-h').onclick = function()
+{
+  orderBy('price-h');
+}
+
+//})();
