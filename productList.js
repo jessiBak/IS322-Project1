@@ -1,5 +1,5 @@
-//Mock Database
-/*(function () {*/
+//Mock Database + product rendering, sorting, and filtering
+(function () {
 const products = [
 {"title": "Spicy Chicken Pasta Soup", "price": "8.99", "type": "soup", "img_src": "https://www.eatwell101.com/wp-content/uploads/2016/10/homemade-chicken-soup-recipe-1.jpg", "category": "spicy",},
 {"title": "T Shirt", "price": "5.99", "type": "clothes", "img_src": "https://res.cloudinary.com/teepublic/image/private/s--qYWqBEPI--/t_Resized%20Artwork/c_crop,x_10,y_10/c_fit,w_470/c_crop,g_north_west,h_626,w_470,x_0,y_0/g_north_west,u_upload:v1462829015:production:blanks:mtl53ofohwq5goqjo9ke,x_-395,y_-325/b_rgb:eeeeee/c_limit,f_auto,h_630,q_90,w_630/v1608115657/production/designs/17444308_0.jpg", "category": "other",},
@@ -12,12 +12,26 @@ const products = [
 {"title": "Simple Veggie Soup", "price": "3.55", "type": "soup", "img_src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPwPdb-1d03GPcPhb-4sKT8VxivbqXQ7n9vA&usqp=CAU", "category": "veggie",},
 ];
 
+//function to display the list of products given a mock database of product objects
 function renderList(results)
 {
   const product_div = document.querySelector('#products-list-container');
   product_div.innerHTML = '';
   let prodList = results.map(function(result)
   {
+    if(result.type === 'clothes')
+    {
+      return (
+        '<div class=\"card\"> \n' +
+        '<img class=\"card-img-top\" src=' + result.img_src + ' alt=\"Product Image\"> \n' +
+        '<div class=\"card-body\"> \n' +
+          '<h5 class=\"card-title\">' + result.title + '</h5> \n' +
+          '<p class=\"price">$' + result.price + '</p> \n' +
+          '<a href=\"#\" class=\"btn btn-warning\" id=\"clothes_button\">See details</a> \n' +
+        '</div> \n' +
+      '</div> \n'
+      );
+    }
     return (
       '<div class=\"card\"> \n' +
       '<img class=\"card-img-top\" src=' + result.img_src + ' alt=\"Product Image\"> \n' +
@@ -38,6 +52,7 @@ function renderList(results)
 
 renderList(products);
 
+//function to sort products based name or price (ascending/descending) based on selected category
 function orderBy(sort_category)
 {
   console.log('button was clicked!')
@@ -77,17 +92,110 @@ function orderBy(sort_category)
     renderList(results);
 }
 
+//function to filter products based on selected sort_category spicy creamy chunky veggie other
+function filterProducts(category)
+{
+  let filtered = [];
+  if(category === 'spicy')
+  {
+    filtered = products.filter(function(item)
+    {
+      return item.category === 'spicy';
+    });
+  }
+  else if(category === 'creamy')
+  {
+    filtered = products.filter(function(item)
+    {
+      return item.category === 'creamy';
+    });
+  }
+  else if(category === 'chunky')
+  {
+    filtered = products.filter(function(item)
+    {
+      return item.category === 'chunky';
+    });
+  }
+  else if(category === 'veggie')
+  {
+    filtered = products.filter(function(item)
+    {
+      return item.category === 'veggie';
+    });
+  }
+  else if(category === 'other')
+  {
+    filtered = products.filter(function(item)
+    {
+      return item.category === 'other';
+    });
+  }
+  else //reset (display all products in original order)
+  {
+    filtered = products;
+  }
+  renderList(filtered);
+}
+
+//assigning onclick events
+document.getElementById('spicy').onclick = function()
+{
+  filterProducts('spicy');
+}
+
+document.getElementById('creamy').onclick = function()
+{
+  filterProducts('creamy');
+}
+
+document.getElementById('chunky').onclick = function()
+{
+  filterProducts('chunky');
+}
+
+document.getElementById('veggie').onclick = function()
+{
+  filterProducts('veggie');
+}
+
+document.getElementById('other').onclick = function()
+{
+  filterProducts('other');
+}
+
+document.getElementById('reset').onclick = function()
+{
+  filterProducts('reset');
+}
+
 document.getElementById('name').onclick = function()
 {
   orderBy('name');
 }
+
 document.getElementById('price-l').onclick = function()
 {
    orderBy('price-l');
 }
+
 document.getElementById('price-h').onclick = function()
 {
   orderBy('price-h');
 }
 
-//})();
+let details_buttons = document.getElementsByClassName('btn btn-primary');
+for(let i = 0; i < details_buttons.length; i++)
+{
+  details_buttons[i].onclick = function()
+  {
+    alert('Sorry, this item is sold out.');
+  }
+}
+
+document.getElementById('clothes_button').onclick = function()
+{
+  alert('Why are you buying CLOTHES from the SOUP store??');
+}
+
+})();
