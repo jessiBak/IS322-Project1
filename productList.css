@@ -3,7 +3,8 @@ html, body
 	min-height: 100%;
 	margin: 0;
 	padding: 0;
-	background-color: #f5dcdc;
+	background-color: #fff8f1;
+	text-align: left;
 }
 
 h1
@@ -24,13 +25,14 @@ h1
 	left: 0px;
   width: 100%;
   height: 5em;
-	background-color: white
+	background-color: #ffbfbe;
 }
 
 .flex-container
 {
   display: flex;
   padding: 70px;
+	margin: auto;
 }
 
 #sidebar
@@ -72,8 +74,9 @@ img
 
 footer
 {
-	background-color: white;
 	text-align: right;
+	background-color: #ffbfbe;
+	font-family: "Raleway";
 }
 
 @media only screen and (max-width: 1199px)
